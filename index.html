@@ -3,152 +3,190 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday 🎉</title>
+<title>Secret Birthday Surprise 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(120deg, #ff758c, #ff7eb3);
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ff5f9e,#ffc371);
+  color:white;
+  text-align:center;
+  overflow:hidden;
 }
 
-h1 {
-  margin-top: 30px;
-  font-size: 42px;
-  animation: glow 2s infinite alternate;
+/* LOCK SCREEN */
+#lock{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
-h2 {
-  font-size: 26px;
-  margin-bottom: 10px;
+input{
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  text-align:center;
+  font-size:16px;
 }
 
-p {
-  font-size: 18px;
-  margin: 20px;
-  line-height: 1.6;
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4f81;
+  font-size:16px;
+  margin-top:15px;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px white; }
-  to { text-shadow: 0 0 30px yellow; }
+/* MAIN CONTENT */
+#content{ display:none; }
+
+h1{
+  margin-top:30px;
+  font-size:42px;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{ text-shadow:0 0 10px white; }
+  to{ text-shadow:0 0 30px yellow; }
 }
 
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
+.photo{
+  width:85%;
+  max-width:300px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(255,255,255,0.7);
+  animation:zoomIn 2s ease;
+}
+@keyframes zoomIn{
+  from{transform:scale(0);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
 
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-100vh); opacity: 0; }
+#typing{
+  font-size:18px;
+  margin:20px;
+  min-height:140px;
 }
 
-/* Balloons */
-.balloon {
-  width: 60px;
-  height: 80px;
-  border-radius: 50%;
-  position: fixed;
-  bottom: -100px;
-  animation: balloonUp 10s linear infinite;
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
 }
 
-@keyframes balloonUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-120vh); }
+/* Sparkles */
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:sparkle 3s linear infinite;
 }
-
-/* Photo */
-.photo {
-  width: 90%;
-  max-width: 300px;
-  border-radius: 20px;
-  margin: 20px 0;
-  box-shadow: 0 0 20px rgba(255,255,255,0.6);
-  animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-button {
-  padding: 14px 26px;
-  border: none;
-  border-radius: 30px;
-  background: white;
-  color: #ff4f81;
-  font-size: 16px;
-  margin: 20px;
+@keyframes sparkle{
+  from{opacity:1;}
+  to{opacity:0;transform:translateY(-100px);}
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOCK SCREEN -->
+<div id="lock">
+  <h2>🔒 Enter Secret Password</h2>
+  <input type="password" id="pass" placeholder="Secret password">
+  <button onclick="unlock()">Unlock 💖</button>
+  <p id="error"></p>
+</div>
 
-<h1>🎉 Happy Birthday 🎉</h1>
-<h2>💖 HESHI 💖</h2>
-<p>
-Today is not just another day…  
-It’s the day someone amazing came into this world ✨  
-May your life be filled with smiles, love, and dreams that come true 💫
-</p>
+<!-- MAIN CONTENT -->
+<div id="content">
+  <h1>🎉 Happy Birthday 🎉</h1>
+  <h2>💖 HER_NAME 💖</h2>
 
-<!-- Her photo -->
-<img class="photo" src="https://i.ibb.co/fdTZMBH6/IMG-20230208-WA0049.jpg" alt="Birthday Photo">
+  <img class="photo" src="https://i.ibb.co/fdTZMBH6">
 
-<p>
-Never forget how special you are 🌸  
-Keep shining, keep smiling, and keep being you 💕  
-This small surprise is just to remind you that someone cares 😌
-</p>
+  <div id="typing"></div>
 
-<!-- Surprise Button -->
-<button onclick="showWish()">🎁 Click</button>
-<p id="finalWish"></p>
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi" type="audio/mpeg">
+  </audio>
 
-<!-- Vocaroo Embedded Player -->
-<div style="text-align:center; margin:20px;">
-  <iframe width="300" height="60" src="https://vocaroo.com/embed/13UZaQkuxHpE?autoplay=0" frameborder="0" allow="autoplay"></iframe>
-  
-
+  <!-- Voice message -->
+  <div style="margin-top:20px;">
+    <iframe width="300" height="60"
+      src="https://vocaroo.com/embed/13UZaQkuxHpE"
+      frameborder="0" allow="autoplay"></iframe>
+  </div>
 </div>
 
 <script>
-function showWish() {
-  document.getElementById("finalWish").innerHTML =
-    "Happy Birthday once again 💖🎂<br>— HESHI";
+const PASSWORD = "SECRET_PASSWORD";
+
+/* Unlock */
+function unlock(){
+  const p = document.getElementById("pass").value;
+  if(p === PASSWORD){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("content").style.display="block";
+    document.getElementById("music").play();
+    typeText();
+  }else{
+    document.getElementById("error").innerText="❌ Wrong password, try again";
+  }
 }
 
-// Floating hearts
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 400);
+/* Typing */
+const text =
+"Today is not just a day… 💫\n\n"+
+"It’s the day someone truly special came into this world 💖\n\n"+
+"May your life be filled with love, smiles and happiness 🌸\n\n"+
+"Happy Birthday 🎂\n— YOUR_NAME";
 
-// Balloons
-/*setInterval(() => {
-  const b = document.createElement("div");
-  b.className = "balloon";
-  b.style.left = Math.random() * 100 + "vw";
-  b.style.background = `hsl(${Math.random()*360},80%,70%)`;
-  document.body.appendChild(b);
-  setTimeout(() => b.remove(), 10000);
-}, ;-->*/
+let i=0;
+function typeText(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML +=
+      text.charAt(i)==="\n" ? "<br>" : text.charAt(i);
+    i++;
+    setTimeout(typeText,50);
+  }
+}
+
+/* Hearts */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},300);
+
+/* Sparkles */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),3000);
+},200);
 </script>
 
 </body>
