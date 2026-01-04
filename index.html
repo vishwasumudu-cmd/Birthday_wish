@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday ❤️</title>
+<title>Happy Birthday 🎉</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -65,12 +66,12 @@ p {
   to { transform: translateY(-120vh); }
 }
 
-/* Photos */
-.gallery img {
+/* Photo */
+.photo {
   width: 90%;
   max-width: 300px;
   border-radius: 20px;
-  margin: 15px 0;
+  margin: 20px 0;
   box-shadow: 0 0 20px rgba(255,255,255,0.6);
   animation: fadeIn 2s ease;
 }
@@ -99,15 +100,11 @@ button {
 
 <p>
 Today is not just another day…  
-It’s the day someone beautiful came into this world ✨  
+It’s the day someone amazing came into this world ✨  
 May your life be filled with smiles, love, and dreams that come true 💫
 </p>
 
-<div class="gallery">
-  <img src="https://drive.google.com/uc?export=view&id=1wuXdp4PfwJZ1voenk8Uoe1eyau5hvI0O">
-  <img src="PHOTO_LINK_2">
-  <img src="PHOTO_LINK_3">
-</div>
+<img class="photo" src="https://drive.google.com/uc?export=view&id=1wuXdp4PfwJZ1voenk8Uoe1eyau5hvI0O">
 
 <p>
 Never forget how special you are 🌸  
@@ -119,8 +116,7 @@ This small surprise is just to remind you that someone cares 😌
 
 <p id="finalWish"></p>
 
-<!-- Background Music (optional) -->
-
+<!-- Background Music -->
 <audio autoplay loop>
   <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi" type="audio/mpeg">
 </audio>
@@ -131,7 +127,7 @@ function showWish() {
     "Happy Birthday once again 💖🎂<br>— YOUR_NAME";
 }
 
-// hearts
+// floating hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
