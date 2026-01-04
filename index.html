@@ -9,8 +9,8 @@
 <style>
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#ff5f9e,#ffc371);
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg,#ff5f9e,#ffc371);
   color:white;
   text-align:center;
   overflow:hidden;
@@ -27,31 +27,34 @@ body{
 }
 
 input{
-  padding:12px;
+  padding:14px;
   border:none;
-  border-radius:25px;
-  text-align:center;
+  border-radius:30px;
   font-size:16px;
+  text-align:center;
 }
 
 button{
-  padding:12px 25px;
+  padding:14px 30px;
   border:none;
-  border-radius:25px;
+  border-radius:30px;
   background:white;
   color:#ff4f81;
   font-size:16px;
   margin-top:15px;
 }
 
+#error{ color:#fff; margin-top:10px; }
+
 /* MAIN CONTENT */
 #content{ display:none; }
 
 h1{
-  margin-top:30px;
+  margin-top:25px;
   font-size:42px;
   animation:glow 2s infinite alternate;
 }
+
 @keyframes glow{
   from{ text-shadow:0 0 10px white; }
   to{ text-shadow:0 0 30px yellow; }
@@ -60,10 +63,11 @@ h1{
 .photo{
   width:85%;
   max-width:300px;
-  border-radius:20px;
-  box-shadow:0 0 30px rgba(255,255,255,0.7);
+  border-radius:25px;
+  box-shadow:0 0 30px rgba(255,255,255,0.8);
   animation:zoomIn 2s ease;
 }
+
 @keyframes zoomIn{
   from{transform:scale(0);opacity:0;}
   to{transform:scale(1);opacity:1;}
@@ -72,22 +76,23 @@ h1{
 #typing{
   font-size:18px;
   margin:20px;
-  min-height:140px;
+  min-height:150px;
 }
 
-/* Hearts */
+/* HEARTS */
 .heart{
   position:fixed;
   bottom:-20px;
-  font-size:20px;
+  font-size:22px;
   animation:floatUp 6s linear infinite;
 }
+
 @keyframes floatUp{
   from{transform:translateY(0);opacity:1;}
   to{transform:translateY(-110vh);opacity:0;}
 }
 
-/* Sparkles */
+/* SPARKLES */
 .sparkle{
   position:fixed;
   width:6px;
@@ -96,6 +101,7 @@ h1{
   border-radius:50%;
   animation:sparkle 3s linear infinite;
 }
+
 @keyframes sparkle{
   from{opacity:1;}
   to{opacity:0;transform:translateY(-100px);}
@@ -105,29 +111,31 @@ h1{
 
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- 🔒 LOCK SCREEN -->
 <div id="lock">
   <h2>🔒 Enter Secret Password</h2>
-  <input type="password" id="pass" placeholder="Secret password">
+  <input type="password" id="pass" placeholder="Password">
   <button onclick="unlock()">Unlock 💖</button>
   <p id="error"></p>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- 💖 MAIN CONTENT -->
 <div id="content">
   <h1>🎉 Happy Birthday 🎉</h1>
-  <h2>💖 HER_NAME 💖</h2>
+  <h2>💖 HESHI 💖</h2>
 
+  <!-- PHOTO -->
   <img class="photo" src="https://i.ibb.co/fdTZMBH6">
 
+  <!-- MESSAGE -->
   <div id="typing"></div>
 
-  <!-- Music -->
+  <!-- MUSIC -->
   <audio id="music" loop>
     <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi" type="audio/mpeg">
   </audio>
 
-  <!-- Voice message -->
+  <!-- VOICE MESSAGE -->
   <div style="margin-top:20px;">
     <iframe width="300" height="60"
       src="https://vocaroo.com/embed/13UZaQkuxHpE"
@@ -136,54 +144,56 @@ h1{
 </div>
 
 <script>
-const PASSWORD = "SECRET_PASSWORD";
+/* PASSWORD */
+const PASSWORD = "HESHI";
 
-/* Unlock */
+/* UNLOCK FUNCTION */
 function unlock(){
   const p = document.getElementById("pass").value;
-  if(p === heshi){
+  if(p === PASSWORD){
     document.getElementById("lock").style.display="none";
     document.getElementById("content").style.display="block";
     document.getElementById("music").play();
     typeText();
   }else{
-    document.getElementById("error").innerText="❌ Wrong password, try again";
+    document.getElementById("error").innerText = "❌ Wrong password, try again";
   }
 }
 
-/* Typing */
+/* TYPING MESSAGE */
 const text =
-"Today is not just a day… 💫\n\n"+
-"It’s the day someone truly special came into this world 💖\n\n"+
-"May your life be filled with love, smiles and happiness 🌸\n\n"+
-"Happy Birthday 🎂\n— YOUR_NAME";
+"Today is not just a normal day… 💫\n\n" +
+"It’s the birthday of someone very special 💖\n\n" +
+"HESHI, may your life be filled with happiness, smiles and love 🌸\n\n" +
+"Never forget how amazing you are ✨\n\n" +
+"Happy Birthday 🎂💖";
 
-let i=0;
+let i = 0;
 function typeText(){
-  if(i<text.length){
+  if(i < text.length){
     document.getElementById("typing").innerHTML +=
-      text.charAt(i)==="\n" ? "<br>" : text.charAt(i);
+      text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
     i++;
-    setTimeout(typeText,50);
+    setTimeout(typeText, 50);
   }
 }
 
-/* Hearts */
+/* HEARTS ANIMATION */
 setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random()*100 + "vw";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
 },300);
 
-/* Sparkles */
+/* SPARKLES */
 setInterval(()=>{
-  const s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
+  const s = document.createElement("div");
+  s.className = "sparkle";
+  s.style.left = Math.random()*100 + "vw";
+  s.style.top = Math.random()*100 + "vh";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),3000);
 },200);
