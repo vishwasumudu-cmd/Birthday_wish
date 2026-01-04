@@ -104,7 +104,8 @@ It’s the day someone amazing came into this world ✨
 May your life be filled with smiles, love, and dreams that come true 💫
 </p>
 
-<img class="photo" src="https://drive.google.com/uc?export=view&id=1wuXdp4PfwJZ1voenk8Uoe1eyau5hvI0O">
+<!-- Her photo -->
+<img class="photo" src="https://i.ibb.co/fdTZMBH6/IMG-20230208-WA0049.jpg" alt="Birthday Photo">
 
 <p>
 Never forget how special you are 🌸  
@@ -112,14 +113,16 @@ Keep shining, keep smiling, and keep being you 💕
 This small surprise is just to remind you that someone cares 😌
 </p>
 
+<!-- Surprise Button -->
 <button onclick="showWish()">🎁 Click for Final Surprise</button>
-
 <p id="finalWish"></p>
 
-<!-- Background Music -->
-<audio autoplay loop>
-  <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi" type="audio/mpeg">
-</audio>
+<!-- Vocaroo Embedded Player -->
+<div style="text-align:center; margin:20px;">
+  <iframe width="300" height="60" src="https://vocaroo.com/embed/13UZaQkuxHpE?autoplay=0" frameborder="0" allow="autoplay"></iframe>
+  <br>
+  <a href="https://voca.ro/13UZaQkuxHpE" title="Vocaroo Voice Recorder" target="_blank">View on Vocaroo &gt;&gt;</a>
+</div>
 
 <script>
 function showWish() {
@@ -127,7 +130,7 @@ function showWish() {
     "Happy Birthday once again 💖🎂<br>— YOUR_NAME";
 }
 
-// floating hearts
+// Floating hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -137,7 +140,7 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 6000);
 }, 400);
 
-// balloons
+// Balloons
 setInterval(() => {
   const b = document.createElement("div");
   b.className = "balloon";
