@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +6,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  margin:0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg,#ff5f9e,#ffc371);
-  color:white;
-  text-align:center;
-  overflow:hidden;
+:root{
+  --pink:#ff5f9e;
+  --gold:#ffc371;
 }
 
-/* LOCK SCREEN */
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,var(--pink),var(--gold));
+  color:white;
+  text-align:center;
+  min-height:100vh;
+}
+
+/* ---------- LOCK SCREEN ---------- */
 #lock{
   position:fixed;
   inset:0;
@@ -24,34 +32,55 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  padding:20px;
+}
+
+#lock h2{
+  font-size:clamp(20px,5vw,26px);
 }
 
 input{
   padding:14px;
+  width:100%;
+  max-width:280px;
   border:none;
   border-radius:30px;
   font-size:16px;
   text-align:center;
+  margin-top:15px;
 }
 
 button{
-  padding:14px 30px;
+  padding:14px 35px;
   border:none;
   border-radius:30px;
   background:white;
   color:#ff4f81;
   font-size:16px;
   margin-top:15px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-#error{ color:#fff; margin-top:10px; }
+button:hover{
+  transform:scale(1.05);
+}
 
-/* MAIN CONTENT */
-#content{ display:none; }
+#error{
+  margin-top:10px;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+#content{
+  display:none;
+  padding:20px;
+  max-width:500px;
+  margin:auto;
+}
 
 h1{
-  margin-top:25px;
-  font-size:42px;
+  font-size:clamp(28px,7vw,42px);
+  margin-top:20px;
   animation:glow 2s infinite alternate;
 }
 
@@ -60,23 +89,44 @@ h1{
   to{ text-shadow:0 0 30px yellow; }
 }
 
+h2{
+  font-size:clamp(20px,5vw,26px);
+}
+
+/* PHOTO */
 .photo{
-  width:85%;
-  max-width:300px;
+  width:100%;
+  max-width:280px;
   border-radius:25px;
   box-shadow:0 0 30px rgba(255,255,255,0.8);
-  animation:zoomIn 2s ease;
+  margin:20px auto;
+  animation:zoomIn 1.5s ease;
 }
 
 @keyframes zoomIn{
-  from{transform:scale(0);opacity:0;}
+  from{transform:scale(0.7);opacity:0;}
   to{transform:scale(1);opacity:1;}
 }
 
+/* MESSAGE */
 #typing{
-  font-size:18px;
-  margin:20px;
-  min-height:150px;
+  font-size:clamp(15px,4vw,18px);
+  margin:20px 10px;
+  min-height:140px;
+  line-height:1.6;
+}
+
+/* AUDIO */
+audio{
+  display:none;
+}
+
+/* VOICE */
+iframe{
+  width:100%;
+  max-width:320px;
+  border-radius:12px;
+  margin-top:20px;
 }
 
 /* HEARTS */
@@ -85,6 +135,7 @@ h1{
   bottom:-20px;
   font-size:22px;
   animation:floatUp 6s linear infinite;
+  pointer-events:none;
 }
 
 @keyframes floatUp{
@@ -100,6 +151,7 @@ h1{
   background:white;
   border-radius:50%;
   animation:sparkle 3s linear infinite;
+  pointer-events:none;
 }
 
 @keyframes sparkle{
@@ -111,7 +163,7 @@ h1{
 
 <body>
 
-<!-- 🔒 LOCK SCREEN -->
+<!-- 🔒 LOCK -->
 <div id="lock">
   <h2>🔒 Enter Secret Password</h2>
   <input type="password" id="pass" placeholder="Password">
@@ -119,35 +171,25 @@ h1{
   <p id="error"></p>
 </div>
 
-<!-- 💖 MAIN CONTENT -->
+<!-- 💖 CONTENT -->
 <div id="content">
   <h1>🎉 Happy Birthday 🎉</h1>
   <h2>💖 HESHI 💖</h2>
 
-  <!-- PHOTO -->
   <img class="photo" src="https://i.ibb.co/fdTZMBH6/IMG-20230208-WA0049.jpg">
 
-  <!-- MESSAGE -->
   <div id="typing"></div>
 
-  <!-- MUSIC -->
   <audio id="music" loop>
-    <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi" type="audio/mpeg">
+    <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi">
   </audio>
 
-  <!-- VOICE MESSAGE -->
-  <div style="margin-top:20px;">
-    <iframe width="300" height="60"
-      src="https://vocaroo.com/embed/13UZaQkuxHpE"
-      frameborder="0" allow="autoplay"></iframe>
-  </div>
+  <iframe src="https://vocaroo.com/embed/13UZaQkuxHpE" allow="autoplay"></iframe>
 </div>
 
 <script>
-/* PASSWORD */
 const PASSWORD = "HESHI";
 
-/* UNLOCK FUNCTION */
 function unlock(){
   const p = document.getElementById("pass").value;
   if(p === PASSWORD){
@@ -156,44 +198,45 @@ function unlock(){
     document.getElementById("music").play();
     typeText();
   }else{
-    document.getElementById("error").innerText = "❌ Wrong password, try again";
+    document.getElementById("error").innerText = "❌ Wrong password";
   }
 }
 
-/* TYPING MESSAGE */
+/* TYPE EFFECT */
 const text =
 "Today is not just a normal day… 💫\n\n" +
 "It’s the birthday of someone very special 💖\n\n" +
-"HESHI, may your life be filled with happiness, smiles and love 🌸\n\n" +
+"HESHI, may your life be filled with happiness 🌸\n\n" +
 "Never forget how amazing you are ✨\n\n" +
 "Happy Birthday 🎂💖";
 
-let i = 0;
+let i=0;
 function typeText(){
   if(i < text.length){
     document.getElementById("typing").innerHTML +=
-      text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+      text[i] === "\n" ? "<br>" : text[i];
     i++;
-    setTimeout(typeText, 50);
+    setTimeout(typeText,45);
   }
 }
 
-/* HEARTS ANIMATION */
+/* HEARTS */
 setInterval(()=>{
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "❤️";
-  h.style.left = Math.random()*100 + "vw";
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=14+Math.random()*20+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
 },300);
 
 /* SPARKLES */
 setInterval(()=>{
-  const s = document.createElement("div");
-  s.className = "sparkle";
-  s.style.left = Math.random()*100 + "vw";
-  s.style.top = Math.random()*100 + "vh";
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),3000);
 },200);
