@@ -164,6 +164,64 @@ function createHearts(){
 </script>
 
 </body>
+</html>
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+  <h2>🔒 Only Ishani 💌</h2>
+  <input type="password" id="pass" placeholder="Enter secret">
+  <button onclick="check()">Open</button>
+  <p id="error"></p>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+  <h1>Ishani 💖</h1>
+
+  <div class="message">
+    I'm really sorry... 😔 <br><br>
+
+    I didn’t mean to hurt you.  
+    Maybe I made mistakes… but losing you is something I can't handle.  
+
+    Every moment without you feels empty...  
+
+    Please forgive me ❤️  
+
+    Let’s fix everything... together again 💫  
+  </div>
+</div>
+
+<script>
+function check(){
+  let password = document.getElementById("pass").value;
+
+  if(password === "wish"){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("content").style.display="block";
+    createHearts();
+  }else{
+    document.getElementById("error").innerText="Wrong password 😢";
+  }
+}
+
+/* floating hearts generator */
+function createHearts(){
+  setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (15 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},6000);
+  },400);
+}
+</script>
+
+</body>
 </html>}
 
 /* MESSAGE */
