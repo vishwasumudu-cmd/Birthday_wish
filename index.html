@@ -9,7 +9,6 @@
 :root{
   --pink:#ff4f81;
   --purple:#8e44ad;
-  --dark:#1a1a2e;
 }
 
 body{
@@ -18,10 +17,8 @@ body{
   background:linear-gradient(135deg,var(--pink),var(--purple));
   color:white;
   text-align:center;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  height:100vh;
+  overflow:hidden;
 }
 
 /* LOCK SCREEN */
@@ -34,15 +31,10 @@ body{
   align-items:center;
 }
 
-#lock h2{
-  font-size:24px;
-}
-
 input{
   padding:14px;
   border:none;
   border-radius:30px;
-  margin-top:15px;
   text-align:center;
   width:220px;
 }
@@ -65,19 +57,22 @@ button:hover{
 /* MAIN CONTENT */
 #content{
   display:none;
-  max-width:500px;
   padding:20px;
+  max-width:500px;
+  margin:auto;
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
   animation:fadeIn 2s ease;
 }
 
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
+  to{opacity:1; transform:translateY(-50%);}
 }
 
 h1{
   font-size:38px;
-  margin-bottom:20px;
   animation:glow 2s infinite alternate;
 }
 
@@ -109,11 +104,11 @@ h1{
 
 <body>
 
-<!-- LOCK -->
+<!-- LOCK SCREEN -->
 <div id="lock">
   <h2>🔒 Only Ishani 💌</h2>
   <input type="password" id="pass" placeholder="Enter secret">
-  <button onclick="check()">Open</button>
+  <button onclick="check()">Unlock 💖</button>
   <p id="error"></p>
 </div>
 
@@ -125,7 +120,7 @@ h1{
     I'm really sorry... 😔 <br><br>
 
     I didn’t mean to hurt you.  
-    Maybe I made mistakes… but losing you is something I can't handle.  
+    I made mistakes… but losing you is something I can't accept.  
 
     Every moment without you feels empty...  
 
@@ -142,14 +137,14 @@ function check(){
   if(password === "wish"){
     document.getElementById("lock").style.display="none";
     document.getElementById("content").style.display="block";
-    createHearts();
+    startHearts();
   }else{
     document.getElementById("error").innerText="Wrong password 😢";
   }
 }
 
-/* floating hearts generator */
-function createHearts(){
+/* HEART ANIMATION */
+function startHearts(){
   setInterval(()=>{
     let heart = document.createElement("div");
     heart.className = "heart";
@@ -158,204 +153,12 @@ function createHearts(){
     heart.style.fontSize = (15 + Math.random()*20) + "px";
     document.body.appendChild(heart);
 
-    setTimeout(()=>{heart.remove();},6000);
+    setTimeout(()=>{
+      heart.remove();
+    },6000);
+
   },400);
 }
-</script>
-
-</body>
-</html>
-<body>
-
-<!-- LOCK -->
-<div id="lock">
-  <h2>🔒 Only Ishani 💌</h2>
-  <input type="password" id="pass" placeholder="Enter secret">
-  <button onclick="check()">Open</button>
-  <p id="error"></p>
-</div>
-
-<!-- CONTENT -->
-<div id="content">
-  <h1>Ishani 💖</h1>
-
-  <div class="message">
-    I'm really sorry... 😔 <br><br>
-
-    I didn’t mean to hurt you.  
-    Maybe I made mistakes… but losing you is something I can't handle.  
-
-    Every moment without you feels empty...  
-
-    Please forgive me ❤️  
-
-    Let’s fix everything... together again 💫  
-  </div>
-</div>
-
-<script>
-function check(){
-  let password = document.getElementById("pass").value;
-
-  if(password === "wish"){
-    document.getElementById("lock").style.display="none";
-    document.getElementById("content").style.display="block";
-    createHearts();
-  }else{
-    document.getElementById("error").innerText="Wrong password 😢";
-  }
-}
-
-/* floating hearts generator */
-function createHearts(){
-  setInterval(()=>{
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (15 + Math.random()*20) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{heart.remove();},6000);
-  },400);
-}
-</script>
-
-</body>
-</html>}
-
-/* MESSAGE */
-#typing{
-  font-size:clamp(15px,4vw,18px);
-  margin:20px 10px;
-  min-height:140px;
-  line-height:1.6;
-}
-
-/* AUDIO */
-audio{
-  display:none;
-}
-
-/* VOICE */
-iframe{
-  width:100%;
-  max-width:320px;
-  border-radius:12px;
-  margin-top:20px;
-}
-
-/* HEARTS */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:22px;
-  animation:floatUp 6s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes floatUp{
-  from{transform:translateY(0);opacity:1;}
-  to{transform:translateY(-110vh);opacity:0;}
-}
-
-/* SPARKLES */
-.sparkle{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  animation:sparkle 3s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes sparkle{
-  from{opacity:1;}
-  to{opacity:0;transform:translateY(-100px);}
-}
-</style>
-</head>
-
-<body>
-
-<!-- 🔒 LOCK -->
-<div id="lock">
-  <h2>🔒 Enter Secret Password</h2>
-  <input type="password" id="pass" placeholder="Password">
-  <button onclick="unlock()">Unlock 💖</button>
-  <p id="error"></p>
-</div>
-
-<!-- 💖 CONTENT -->
-<div id="content">
-  <h1>🎉 Happy Birthday 🎉</h1>
-  <h2>💖 HESHI 💖</h2>
-
-  <img class="photo" src="https://i.ibb.co/fdTZMBH6/IMG-20230208-WA0049.jpg">
-
-  <div id="typing"></div>
-
-  <audio id="music" loop>
-    <source src="https://drive.google.com/uc?export=download&id=1zn0Lu02unclReHUN9qtRTeztYpZYk0yi">
-  </audio>
-
-  <iframe src="https://vocaroo.com/embed/13UZaQkuxHpE" allow="autoplay"></iframe>
-</div>
-
-<script>
-const PASSWORD = "HESHI";
-
-function unlock(){
-  const p = document.getElementById("pass").value;
-  if(p === PASSWORD){
-    document.getElementById("lock").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("music").play();
-    typeText();
-  }else{
-    document.getElementById("error").innerText = "❌ Wrong password";
-  }
-}
-
-/* TYPE EFFECT */
-const text =
-"Today is not just a normal day… 💫\n\n" +
-"It’s the birthday of someone very special 💖\n\n" +
-"HESHI, may your life be filled with happiness 🌸\n\n" +
-"Never forget how amazing you are ✨\n\n" +
-"Happy Birthday 🎂💖";
-
-let i=0;
-function typeText(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML +=
-      text[i] === "\n" ? "<br>" : text[i];
-    i++;
-    setTimeout(typeText,45);
-  }
-}
-
-/* HEARTS */
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=14+Math.random()*20+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},300);
-
-/* SPARKLES */
-setInterval(()=>{
-  const s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),3000);
-},200);
 </script>
 
 </body>
